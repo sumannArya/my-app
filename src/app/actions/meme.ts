@@ -8,7 +8,7 @@ import { z } from 'zod';
 
 const MemeSchema = z.object({
     caption: z.string().max(300).optional(),
-    imageUrl: z.string().url(),
+    imageUrl: z.string(), // Removed .url() validation to support Base64 data URIs
 });
 
 export async function createMeme(prevState: any, formData: FormData) {
@@ -41,6 +41,6 @@ export async function createMeme(prevState: any, formData: FormData) {
         return { message: 'Failed to post meme' };
     }
 
-    revalidatePath('/');
-    redirect('/');
+    revalidatePath('/feed');
+    redirect('/feed');
 }

@@ -16,8 +16,8 @@ export const authConfig = {
                 if (isLoggedIn) return true;
                 return false; // Redirect unauthenticated users to login page
             } else if (isLoggedIn) {
-                // Redirect logged-in users away from auth pages
-                if (nextUrl.pathname.startsWith('/login') || nextUrl.pathname.startsWith('/register')) {
+                // Redirect logged-in users away from auth pages AND root
+                if (nextUrl.pathname.startsWith('/login') || nextUrl.pathname.startsWith('/register') || nextUrl.pathname === '/') {
                     return Response.redirect(new URL('/feed', nextUrl));
                 }
             }
