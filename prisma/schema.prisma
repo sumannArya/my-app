@@ -19,6 +19,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
   memes         Meme[]
+  likes         Like[]
+  saved         SavedMeme[]
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -30,8 +32,29 @@ model Meme {
   imageUrl  String
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  likes     Like[]
+  saved     SavedMeme[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Like {
+  userId    String
+  memeId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  meme      Meme     @relation(fields: [memeId], references: [id], onDelete: Cascade)
+  
+  @@id([userId, memeId])
+}
+
+model SavedMeme {
+  userId    String
+  memeId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  meme      Meme     @relation(fields: [memeId], references: [id], onDelete: Cascade)
+  savedAt   DateTime @default(now())
+
+  @@id([userId, memeId])
 }
 
 model Account {
