@@ -33,7 +33,7 @@ export default function MemeCard({ meme }: { meme: MemeProps }) {
                 </p>
             )}
 
-            <div className="mt-2 px-2 pb-2 flex items-center gap-2">
+            <div className="mt-2 px-2 flex items-center gap-2">
                 {meme.user.image && (
                     <img src={meme.user.image} alt="Avatar" className="w-6 h-6 rounded-full" />
                 )}
@@ -41,6 +41,8 @@ export default function MemeCard({ meme }: { meme: MemeProps }) {
                     {meme.user.username || meme.user.name || 'Anonymous'}
                 </Link>
             </div>
+
+            <EngagementBar memeId={meme.id} />
         </div>
     );
 }
