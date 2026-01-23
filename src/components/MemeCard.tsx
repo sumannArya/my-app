@@ -24,7 +24,7 @@ export default function MemeCard({ meme }: { meme: MemeProps }) {
                     loading="lazy"
                 />
                 {/* Overlay for hover actions (Like/Save) - Phase 6 */}
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all rounded-lg" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all rounded-lg" />
             </div>
 
             {meme.caption && (
